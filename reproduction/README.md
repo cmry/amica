@@ -79,31 +79,35 @@ def get_train_test(data, x_text, labels):
 
 (I slightly altered my added bit at the bottom):
 
-    pos_train = set(train_pos)
-    pos_test = set(test_pos)
-
+```python
+pos_train = set(train_pos)
+pos_test = set(test_pos)
+```
 
 This also allows for direct confirmation using the sets' intersection, sampling an item, and confirming if they are in the positive instances:
 
-    len(pos_train & pos_test)
-
+```python
+len(pos_train & pos_test)
+```
 
 ... yielding 202 items, and:
 
-    sample_positive_instance = list(pos_train & pos_test)[0]
-
+```python
+sample_positive_instance = list(pos_train & pos_test)[0]
+```
 
 ... taking the 0th common item, and confirming:
 
-    sample_positive_instance in pos_train
-    True
-
+```python
+sample_positive_instance in pos_train
+True
 
 ... and:
 
-    sample_positive_instance in pos_test
-    True
-
+```python
+sample_positive_instance in pos_test
+True
+```
 
 Therefore, I do still think my raised issue persists. I have attached my version of the DNN notebook with a few extra checks if you want to take a look at it.
 
