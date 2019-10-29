@@ -1,6 +1,10 @@
 # Current Limitations in Cyberbullying Detection: on Evaluation Criteria, Reproducibility, and Data Scarcity
 
-Repository for the work described in [Current Limitations in Cyberbullying Detection: on Evaluation Criteria, Reproducibility, and Data Scarcity](#). Code is released under the GPL-v3 license. If you use anything related to the repository or paper, please cite the following work:
+Repository for the work described in [Current Limitations in Cyberbullying Detection: on Evaluation Criteria, Reproducibility, and Data Scarcity](https://arxiv.org/abs/1910.11922). Code is released under the GPL-v3 license. 
+
+> **Access to data**: If you'd like access to the Ask.fm or Simulated corpus please contact [us](https://github.com/cmry). Also see [here](https://github.com/cmry/amica/blob/master/README.md#data).
+
+If you use anything related to the repository or paper, please cite the following work:
 
 ```
 @article{emmery2019current,
@@ -9,12 +13,10 @@ Repository for the work described in [Current Limitations in Cyberbullying Detec
   author={Emmery, Chris and Verhoeven, Ben and De Pauw, Guy and Jacobs, Gilles
           and Van Hee, Cynthia and Lefever, Els and Desmet, Bart and Hoste,
           V\'{e}ronique and Daelemans, Walter},
-  journal={arXiv preprint arXiv:EDIT ON ANNOUNCED},
+  journal={arXiv preprint arXiv:1910.11922},
   year={2019}
 }
 ```
-
-> **Article not announced yet!**
 
 Also consider citing the corpora that we used to compare when using the readers supplied with our work. Refer to our paper for references.
 
@@ -49,20 +51,20 @@ python experiments.py baseline --merge
 ```
 > **Note on Score Reproduction**: As long as the paper is pre-print, we might still change the experiments. Please make sure to refer to the most recent paper version (will be updated in this repository).
 
-The reproduction of the neural models from Agrawal et al., including extensive documentation, can be found under `/reproduction`.
+The reproduction of the neural models from Agrawal et al., including extensive documentation, can be found under [`/reproduction`](https://github.com/cmry/amica/tree/master/reproduction).
 
 #### Data
 
-We do *not* supply the data with this repository. We included most of the required scripts, pointers, etc. for the open-source corpora in the `/corpora` directory. If you are a researcher interested in *replication*, please contact us for the data (contact info in paper).
+We do *not* supply the data with this repository. We included most of the required scripts, pointers, etc. for the open-source corpora in the [`/corpora`](https://github.com/cmry/amica/tree/master/corpora) directory. If you are a researcher interested in *replication*, please contact us for the data (contact info in paper).
 
 The readers in our repository assume that all data is in a `.csv` format with `label,"text of a document"` as columns.
 
-If you want to run without certain corpora, either comment out the tuples in [this]() part. Alternatively, if you'd like to add your own data for the comparison, please see the following sections.
+If you want to run without certain corpora, either comment out the tuples in [this](https://github.com/cmry/amica/blob/master/experiments.py#L31) part. Alternatively, if you'd like to add your own data for the comparison, please see the following sections.
 
 
 ### Debugging
 
-We provide a debugging script testing all current functionality of the main evaluation pipeline under `utils.py` on a small debugging dataset (found under `/corpora`). It can be run from shell like so:
+We provide a debugging script testing all current functionality of the main evaluation pipeline under `utils.py` on a small debugging dataset (found under [`/corpora`](https://github.com/cmry/amica/tree/master/corpora)). It can be run from shell like so:
 
 ```shell
 python experiments.py debug
@@ -82,9 +84,7 @@ Depending on versions of packages used, this might throw a few `Deprecation` and
 
 ### Test your Own Pipeline
 
-Adapting the `scikit-learn` API to implement a custom pipline into the
-framework is fairly straight-forward. Consider the following code for generating
-the Naive Bayes features used in NB-SVM:
+Adapting the `scikit-learn` API to implement a custom pipline into the framework is fairly straight-forward. Consider the following code for generating the Naive Bayes features used in NB-SVM:
 
 ```python
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -110,11 +110,7 @@ class BayesFeatures(BaseEstimator, TransformerMixin):
         return self.transform(X)
 ```
 
-The only requirements are adapting the base API for estimators and transformer
-modules by inheritance (`(BaseEstimator, TransformerMixin)` in the `class`
-definition. Just supply `fit`, `transform`, and `fit_transform` functions,
-with matching parameters (`X`, optionally `y`), and make sure to `return self`
-in `fit`.
+The only requirements are adapting the base API for estimators and transformer modules by inheritance (`(BaseEstimator, TransformerMixin)` in the `class` definition. Just supply `fit`, `transform`, and `fit_transform` functions, with matching parameters (`X`, optionally `y`), and make sure to `return self` in `fit`.
 
 Classifiers are implemented in a similar way:
 
@@ -172,7 +168,7 @@ If you want to also include new data here, read on.
 
 ### Including New Data
 
-The most hassle-free way of including your own data is copying (or linking) it to the `/corpora` directory. The current structure should be as follows:
+The most hassle-free way of including your own data is copying (or linking) it to the [`/corpora`](https://github.com/cmry/amica/tree/master/corpora) directory. The current structure should be as follows:
 
 ```shell
 corpora
